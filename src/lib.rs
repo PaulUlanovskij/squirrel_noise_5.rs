@@ -1,3 +1,4 @@
+#![cfg_attr(not(test), no_std)]
 const SQ5_BIT_NOISE1: u32 = 0xd2a80a3f; // 11010010101010000000101000111111
 const SQ5_BIT_NOISE2: u32 = 0xa884f197; // 10101000100001001111000110010111
 const SQ5_BIT_NOISE3: u32 = 0x6C736F4B; // 01101100011100110110111101001011
@@ -264,9 +265,9 @@ pub fn f32_neg_one_to_one_4d(x: i32, y: i32, z: i32, w: i32, seed: i32) -> f32 {
     (i32_4d(x, y, z, w, seed) as f64 / i32::MAX as f64) as f32
 }
 
-use std::cell::Cell;
+use core::cell::Cell;
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Clone, Eq, PartialEq, Ord, PartialOrd, Debug)]
 pub struct SquirrelRng {
     pub seed: Cell<i32>,
     pub index: Cell<i32>,
