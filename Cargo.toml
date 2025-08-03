@@ -6,7 +6,7 @@ authors = ["Paviel \"Esther\" Ulanovskyi"]
 description = "Implementation of SquirrelNoise version 5 with a random values generator and optional bindings with rand crate (rand_squirrel feature)"
 readme = "README.md"
 repository = "https://github.com/PaulUlanovskij/squirrel_noise_5.rs"
-license = "Creative Commons attribution 3.0 license (CC-BY-3.0 US)"
+license = "CC-BY-3.0-US"
 keywords = ["gamedev", "random", "rng"]
 categories = ["algorithms", "game-development", "no-std", "no-std::no-alloc"]
 
