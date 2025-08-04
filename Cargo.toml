@@ -1,6 +1,6 @@
 [package]
 name = "squirrel_noise5"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2024"
 authors = ["Paviel \"Esther\" Ulanovskyi"]
 description = "Implementation of SquirrelNoise version 5 with a random values generator and optional bindings with rand crate (rand_squirrel feature)"

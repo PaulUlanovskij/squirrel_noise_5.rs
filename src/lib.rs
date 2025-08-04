@@ -48,11 +48,11 @@ fn linearize_4d(x: i32, y: i32, z: i32, w: i32) -> i32 {
 //-------------------------------
 #[inline]
 pub fn u32_1d(index: i32, seed: i32) -> u32 {
-    squirrel_noise5(index as u32, seed as u32 as u32)
+    squirrel_noise5(index as u32, seed as u32)
 }
 #[inline]
 pub fn u32_2d(x: i32, y: i32, seed: i32) -> u32 {
-    squirrel_noise5(linearize_2d(x, y) as u32, seed as u32 as u32)
+    squirrel_noise5(linearize_2d(x, y) as u32, seed as u32)
 }
 #[inline]
 pub fn u32_3d(x: i32, y: i32, z: i32, seed: i32) -> u32 {
@@ -257,7 +257,7 @@ pub fn f32_neg_one_to_one_2d(x: i32, y: i32, seed: i32) -> f32 {
     (i32_2d(x, y, seed) as f64 / i32::MAX as f64) as f32
 }
 #[inline]
-pub fn neg_one_to_one_3d(x: i32, y: i32, z: i32, seed: i32) -> f32 {
+pub fn f32_neg_one_to_one_3d(x: i32, y: i32, z: i32, seed: i32) -> f32 {
     (i32_3d(x, y, z, seed) as f64 / i32::MAX as f64) as f32
 }
 #[inline]
@@ -285,7 +285,10 @@ pub use rand::{Rng, RngCore, SeedableRng};
 #[cfg(feature = "rand_squirrel")]
 impl SquirrelRng {
     pub fn new() -> Self {
-        Self::from_rng(&mut rand::rng())
+        SquirrelRng {
+            seed: Cell::from(rand::rng().random()),
+            index: Cell::default(),
+        }
     }
 
     pub fn with_seed(seed: i32) -> Self {
@@ -413,12 +416,12 @@ impl SquirrelRng {
     }
     #[inline]
     pub fn usize_range(&self, min: usize, max: usize) -> usize {
-        min + self.usize(max - min) as usize
+        min + self.usize(max - min)
     }
 
     #[inline]
     pub fn u8(&self) -> u8 {
-        (self.f32_zero_to_one() * 256 as f32) as u8
+        (self.f32_zero_to_one() * 256_f32) as u8
     }
     #[inline]
     pub fn u8_cap(&self, max: u8) -> u8 {
@@ -426,7 +429,7 @@ impl SquirrelRng {
     }
     #[inline]
     pub fn u8_range(&self, min: u8, max: u8) -> u8 {
-        min + self.u8_cap(max - min) as u8
+        min + self.u8_cap(max - min)
     }
 
     #[inline]
