@@ -279,10 +279,10 @@ impl Default for SquirrelRng {
     }
 }
 
-#[cfg(feature = "rand_squirrel")]
+#[cfg(feature = "rand")]
 pub use rand::{Rng, RngCore, SeedableRng};
 
-#[cfg(feature = "rand_squirrel")]
+#[cfg(feature = "rand")]
 impl SquirrelRng {
     pub fn new() -> Self {
         SquirrelRng {
@@ -306,7 +306,7 @@ impl SquirrelRng {
     }
 }
 
-#[cfg(feature = "rand_squirrel")]
+#[cfg(feature = "rand")]
 impl RngCore for SquirrelRng {
     #[inline]
     fn next_u32(&mut self) -> u32 {
@@ -324,7 +324,7 @@ impl RngCore for SquirrelRng {
     }
 }
 
-#[cfg(feature = "rand_squirrel")]
+#[cfg(feature = "rand")]
 fn fill_bytes_via_next<R: RngCore + ?Sized>(rng: &mut R, dest: &mut [u8]) {
     let mut left = dest;
     while left.len() >= 8 {
@@ -343,7 +343,7 @@ fn fill_bytes_via_next<R: RngCore + ?Sized>(rng: &mut R, dest: &mut [u8]) {
     }
 }
 
-#[cfg(feature = "rand_squirrel")]
+#[cfg(feature = "rand")]
 impl SeedableRng for SquirrelRng {
     type Seed = [u8; 4];
 
