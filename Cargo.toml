@@ -11,4 +11,7 @@ keywords = ["gamedev", "random", "rng"]
 categories = ["algorithms", "game-development", "no-std", "no-std::no-alloc"]
 
 [dependencies]
-rand = {version = ">=0.9.2", optional = true}
+rand = { version = ">=0.9.2", optional = true }
+
+[features]
+rand = ["dep:rand"]

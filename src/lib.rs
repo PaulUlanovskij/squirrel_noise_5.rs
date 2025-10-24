@@ -286,7 +286,7 @@ pub use rand::{Rng, RngCore, SeedableRng};
 impl SquirrelRng {
     pub fn new() -> Self {
         SquirrelRng {
-            seed: Cell::from(rand::rng().random()),
+            seed: Cell::from(rand::rng().random::<i32>()),
             index: Cell::default(),
         }
     }
